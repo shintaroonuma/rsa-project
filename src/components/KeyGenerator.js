@@ -10,16 +10,10 @@ import { UPPER_BOUND, LOWER_BOUND, checkBound, checkPrime } from "../rsa";
  * Two textboxes are used for prime number inputs. The generate button is
  * pressed and the resulting values are then displayed: the public key, private
  * key and the product of the primes N.
- *
- * This component has a `requireReentry` state which changes when the "Generate"
- * button is pressed, blank TextBox components can be forced to show an error
- * message.
  */
 export default class KeyGenerator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { requireReentry: false };
-
     this.getErrorMsg = this.getErrorMsg.bind(this);
 
     this.textbox1Ref = React.createRef();
