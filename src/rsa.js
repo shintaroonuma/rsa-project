@@ -58,46 +58,45 @@ export function checkPrime(a) {
 
 /**
  * Generates n: modulus for public and private keys
- * @param {number} p - prime number
- * @param {number} q - prime number != p
+ * @param {number} p prime number
+ * @param {number} q prime number != p
+ * @returns {number}
  */
-function generateN(p , q){
-    return p * q;
+export function generateN(p, q) {
+  return p * q;
 }
 
 /**
  * Generates public key: e
  * e and phi(n) share no factors other than 1
- * @param {number} p  prime number
- * @param {number} q  prime number != p
+ * @param {number} p prime number
+ * @param {number} q prime number != p
  * @returns {number} public key
  */
-function generatePublic(p , q){
-    let phi = (p-1) * (q-1);
-    let e = 2;
-    let isValid = false; // true if e is valid
-    while(!isValid){
-        e = e +1;
-        let gcdOut = gcd(e,phi);
-        if(gcdOut === 1){
-            isValid = true;
-        }
+export function generatePublic(p, q) {
+  let phi = (p - 1) * (q - 1);
+  let e = 2;
+  let isValid = false; // true if e is valid
+  while (!isValid) {
+    e = e + 1;
+    let gcdOut = gcd(e, phi);
+    if (gcdOut === 1) {
+      isValid = true;
     }
-    return e;
+  return e;
 }
 
 /**
- * generates private key: d
+ * Generates private key: d
  * d = (1 + x * phi(n))/e for some integer x
- * @param {number} p  prime number
- * @param {number} q  prime number != p
+ * @param {number} p prime number
+ * @param {number} q prime number != p
  * @returns {number} private key
  */
-function generatePrivate(p,q){
-    let e = generatePublic(p,q);
-
-
-    return 12;
+export function generatePrivate(p, q) {
+  let e = generatePublic(p, q);
+  // TODO: Replace dummy value
+  return 12;
 }
 
 /**
