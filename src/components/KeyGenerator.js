@@ -126,7 +126,7 @@ export default class KeyGenerator extends React.Component {
               getError={this.getErrorMsg}
               ref={this.textbox2Ref}
             />
-            <button onClick={this.onGenerate} className={styles.button}>
+            <button onClick={this.onGenerate}>
               Generate
             </button>
           </Container>
