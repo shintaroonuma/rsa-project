@@ -1,5 +1,10 @@
 
-//greatest common divisor
+/**
+ * Simple greatest common divisor function
+ * Provide two integers as parameters
+ * @param {number} a
+ * @param {number} b
+ */
 function gcd(a,b){
     if(a < b){
         return gcd(b,a);
@@ -12,12 +17,56 @@ function gcd(a,b){
     return a;
 }
 
-//generates N - modulus for public and private keys
+/**
+ * checks if number is inside our boundaries
+ * @param {number} a
+ * @returns {boolean} is number valid
+ */
+function checkBound(a) {
+    if(a > Number.MAX_SAFE_INTEGER){
+        return false;
+    }
+    else{
+        return a > 0;
+    }
+}
+
+/**
+ * simple prime checker
+ * @param {number} a
+ * @returns {boolean} is number prime
+ */
+function checkPrime(a) {
+    let isValid = true;
+    if(a === 1){
+        return false;
+    }
+    else{
+        for(let i = 2 ; i < a ; i++){
+            if(a%i === 0){
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+}
+
+/**
+ * Generates n: modulus for public and private keys
+ * @param {number} p - prime number
+ * @param {number} q - prime number != p
+ */
 function generateN(p , q){
     return p * q;
 }
 
-//generates public from 2 primes
+/**
+ * Generates public key: e
+ * e and phi(n) share no factors other than 1
+ * @param {number} p  prime number
+ * @param {number} q  prime number != p
+ * @returns {number} public key
+ */
 function generatePublic(p , q){
     let phi = (p-1) * (q-1);
     let e = 2;
@@ -32,17 +81,38 @@ function generatePublic(p , q){
     return 12;
 }
 
-//generates private from 2 primes
-function generatePrivate(a,b){
+/**
+ * generates private key: d
+ * d = (1 + x * phi(n))/e for some integer x
+ * @param {number} p  prime number
+ * @param {number} q  prime number != p
+ * @returns {number} private key
+ */
+function generatePrivate(p,q){
+    let e = generatePublic(p,q);
+
+
     return 12;
 }
 
-//encrypts message using
+/**
+ * encrypts text by raising each block to the eth power modulo n
+ * @param {number} a
+ * @param {number} b
+ * @param {string} text
+ * @returns {string} ciphertext
+ */
 function encrypt(a,b,text) {
     return "encrypted text";
 }
 
-//decrypts message using
+/**
+ * decrypts ciphertext by raising value to the dth power modulo n
+ * @param {number} a
+ * @param {number} b
+ * @param {string} text
+ * @returns {string}
+ */
 function decrypt(a,b,text){
     return "decrypted text";
 }
