@@ -11,6 +11,7 @@ import {
   generatePublic,
   generatePrivate
 } from "../rsa";
+import Container from "./Container";
 
 /**
  * Section containing inputs, a button, and texts for generating keys.
@@ -112,8 +113,7 @@ export default class KeyGenerator extends React.Component {
     return (
       <Section title="1. Generate keys">
         <div className={styles.container}>
-          <div className={styles.form}>
-            <p className={styles.desc}>Choose two prime numbers</p>
+          <Container title="Choose two prime numbers">
             <TextBox
               type="number"
               placeholder="First prime"
@@ -129,9 +129,8 @@ export default class KeyGenerator extends React.Component {
             <button onClick={this.onGenerate} className={styles.button}>
               Generate
             </button>
-          </div>
-          <div>
-            <p className={styles.desc}>Generated values</p>
+          </Container>
+          <Container title="Generated values">
             <table className={styles.table}>
               <tr>
                 <th>
@@ -158,7 +157,7 @@ export default class KeyGenerator extends React.Component {
                 </td>
               </tr>
             </table>
-          </div>
+          </Container>
         </div>
       </Section>
     );
