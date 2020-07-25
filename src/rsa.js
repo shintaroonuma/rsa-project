@@ -83,9 +83,7 @@ export function generatePublic(p, q) {
     if (gcdOut === 1) {
       isValid = true;
     }
-  }
-  // TODO: Replace dummy value
-  return 12;
+  return e;
 }
 
 /**
