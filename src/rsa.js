@@ -83,7 +83,7 @@ function generatePublic(p , q){
             isValid = true;
         }
     }
-    return 12;
+    return e;
 }
 
 /**
