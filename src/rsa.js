@@ -18,6 +18,40 @@ function gcd(a,b){
 }
 
 /**
+ * checks if number is inside our boundaries
+ * @param {number} a
+ * @returns {boolean} is number valid
+ */
+function checkBound(a) {
+    if(a > Number.MAX_SAFE_INTEGER){
+        return false;
+    }
+    else{
+        return a > 0;
+    }
+}
+
+/**
+ * simple prime checker
+ * @param {number} a
+ * @returns {boolean} is number prime
+ */
+function checkPrime(a) {
+    let isValid = true;
+    if(a === 1){
+        return false;
+    }
+    else{
+        for(let i = 2 ; i < a ; i++){
+            if(a%i === 0){
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
+}
+
+/**
  * Generates n: modulus for public and private keys
  * @param {number} p - prime number
  * @param {number} q - prime number != p
