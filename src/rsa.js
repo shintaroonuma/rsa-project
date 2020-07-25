@@ -4,16 +4,16 @@
  * @param {number} a
  * @param {number} b
  */
-function gcd(a,b){
-    if(a < b){
-        return gcd(b,a);
-    }
-    while(b !== 0){
-        let temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
+function gcd(a, b) {
+  if (a < b) {
+    return gcd(b, a);
+  }
+  while (b !== 0) {
+    let temp = b;
+    b = a % b;
+    a = temp;
+  }
+  return a;
 }
 
 /** Upper bound for a prime number input. */
@@ -78,11 +78,11 @@ export function generatePublic(p, q) {
   let e = 2;
   let isValid = false; // true if e is valid
   while (!isValid) {
-      e = e + 1;
-      let gcdOut = gcd(e, phi);
-      if (gcdOut === 1) {
-          isValid = true;
-      }
+    e = e + 1;
+    let gcdOut = gcd(e, phi);
+    if (gcdOut === 1) {
+      isValid = true;
+    }
   }
   return e;
 }
@@ -107,8 +107,8 @@ export function generatePrivate(p, q) {
  * @param {string} text
  * @returns {string} ciphertext
  */
-function encrypt(a,b,text) {
-    return "encrypted text";
+function encrypt(a, b, text) {
+  return "encrypted text";
 }
 
 /**
@@ -118,7 +118,6 @@ function encrypt(a,b,text) {
  * @param {string} text
  * @returns {string}
  */
-function decrypt(a,b,text){
-    return "decrypted text";
+function decrypt(a, b, text) {
+  return "decrypted text";
 }
-
