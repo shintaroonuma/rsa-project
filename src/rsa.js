@@ -78,11 +78,12 @@ export function generatePublic(p, q) {
   let e = 2;
   let isValid = false; // true if e is valid
   while (!isValid) {
-    e = e + 1;
-    let gcdOut = gcd(e, phi);
-    if (gcdOut === 1) {
-      isValid = true;
-    }
+      e = e + 1;
+      let gcdOut = gcd(e, phi);
+      if (gcdOut === 1) {
+          isValid = true;
+      }
+  }
   return e;
 }
 
@@ -120,3 +121,4 @@ function encrypt(a,b,text) {
 function decrypt(a,b,text){
     return "decrypted text";
 }
+
