@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./KeyGenerator.module.sass";
 import Section from "./Section";
 import TextBox from "./TextBox";
+import { UPPER_BOUND, LOWER_BOUND, checkBound, checkPrime } from "../rsa";
 
 /**
  * Section containing inputs, a button, and texts for generating keys.
@@ -33,8 +34,19 @@ export default class KeyGenerator extends React.Component {
    * @returns {string}
    */
   getErrorMsg(value) {
-    // TODO: Replace dummy result
-    return value === "7" ? "" : "Invalid!";
+    if (value === "") {
+      return "Enter a prime number.";
+    }
+
+    const x = parseInt(value);
+
+    if (!checkBound(x)) {
+      return `The value must be between ${LOWER_BOUND} and ${UPPER_BOUND}.`;
+    } else if (!checkPrime(x)) {
+      return "Make sure your value is prime.";
+    } else {
+      return "";
+    }
   }
 
   /**

@@ -1,4 +1,3 @@
-
 /**
  * Simple greatest common divisor function
  * Provide two integers as parameters
@@ -17,18 +16,25 @@ function gcd(a,b){
     return a;
 }
 
+/** Upper bound for a prime number input. */
+export const UPPER_BOUND = Number.MAX_SAFE_INTEGER;
+
+/** Lower bound for a prime number input. */
+export const LOWER_BOUND = 1;
+
 /**
  * checks if number is inside our boundaries
  * @param {number} a
  * @returns {boolean} is number valid
+ * @see UPPER_BOUND
+ * @see LOWER_BOUND
  */
-function checkBound(a) {
-    if(a > Number.MAX_SAFE_INTEGER){
-        return false;
-    }
-    else{
-        return a > 0;
-    }
+export function checkBound(a) {
+  if (a > UPPER_BOUND) {
+    return false;
+  } else {
+    return a >= LOWER_BOUND;
+  }
 }
 
 /**
@@ -36,19 +42,18 @@ function checkBound(a) {
  * @param {number} a
  * @returns {boolean} is number prime
  */
-function checkPrime(a) {
-    let isValid = true;
-    if(a === 1){
-        return false;
+export function checkPrime(a) {
+  let isValid = true;
+  if (a === 1) {
+    return false;
+  } else {
+    for (let i = 2; i < a; i++) {
+      if (a % i === 0) {
+        isValid = false;
+      }
     }
-    else{
-        for(let i = 2 ; i < a ; i++){
-            if(a%i === 0){
-                isValid = false;
-            }
-        }
-        return isValid;
-    }
+    return isValid;
+  }
 }
 
 /**
