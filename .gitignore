@@ -5,6 +5,7 @@
 
 # Production
 /build
+.netlify/
 
 # Misc
 .DS_Store
