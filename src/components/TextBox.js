@@ -24,10 +24,14 @@ export default class TextBox extends React.Component {
     this.handleBlur = this.handleBlur.bind(this);
 
     this.inputRef = React.createRef();
-    
-    // Check if default value in props exists
-    if (this.props.defaultVal) {
-      this.setState({ value: this.props.defaultVal });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.defaultVal !== this.props.defaultVal) {
+      if (this.props.defaultVal) {
+        console.log("defaultVal changed: updating state");
+        this.setState({ value: this.props.defaultVal });
+      }
     }
   }
 
