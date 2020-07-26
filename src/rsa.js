@@ -119,15 +119,15 @@ export function generatePrivate(p, q) {
 }
 
 /**
- * encrypts text by raising each block to the eth power modulo n
+ * Encrypts text by raising each block to the eth power modulo n
  * @param {number} e public key
  * @param {number} n modulus for public key
  * @param {string} text
  * @returns {array} ciphertext
  */
-function encrypt(e, n, text) {
+export function encrypt(e, n, text) {
   let len = text.length;
-  let output = Array();
+  let output = [];
   for (let i = 0; i < len; i++) {
     let value = text.charCodeAt(i);
     let newVal = Math.pow(value, e) % n;
@@ -137,13 +137,13 @@ function encrypt(e, n, text) {
 }
 
 /**
- * decrypts ciphertext by raising value to the dth power modulo n
+ * Decrypts ciphertext by raising value to the dth power modulo n
  * @param {number} d private key
  * @param {number} n modulus for private key
  * @param {array} text
  * @returns {string}
  */
-function decrypt(d, n, text) {
+export function decrypt(d, n, text) {
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {

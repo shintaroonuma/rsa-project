@@ -3,6 +3,7 @@ import Section from "./Section";
 import Container from "./Container";
 import TextBox from "./TextBox";
 import Emoji from "./Emoji";
+import { decrypt } from "../rsa";
 
 /**
  * Section for the user to decrypt a message.
@@ -29,8 +30,7 @@ export default class DecryptionSection extends React.Component {
     const currentTextbox = this.textboxRef.current;
     const input = currentTextbox.state.value;
 
-    // TODO: Use props to call function in RSA module
-    const plaintext = input;
+    const plaintext = decrypt(this.props.privateKey, this.props.n, input);
     this.setState({ plaintext: plaintext });
   }
 
