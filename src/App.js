@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Description from "./components/Description";
 import KeyGenerator from "./components/KeyGenerator";
 import EncryptionSection from "./components/EncryptionSection";
+import DecryptionSection from "./components/DecryptionSection";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Description />
       <KeyGenerator />
       <EncryptionSection />
+      <DecryptionSection />
     </div>
   );
 }
