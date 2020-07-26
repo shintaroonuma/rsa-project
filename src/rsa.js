@@ -119,7 +119,7 @@ export function encrypt(e, n, text) {
   let output = "";
   for (let i = 0; i < len; i++) {
     let value = text.charCodeAt(i);
-    let newVal = Math.pow(value, e) % n;
+    let newVal = powerMod(e, n, value);
     let newString = newVal.toString();
     output = output.concat(newString);
     output = output.concat(" ");
@@ -139,11 +139,34 @@ export function decrypt(d, n, ciphertext) {
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {
-    output = text;
-    let value = text[i];
-    let newVal = Math.pow(value, d) % n;
+    let value = parseInt(text[i]);
+    let newVal = powerMod(d, n, value);
     let newString = String.fromCharCode(newVal);
     output = output.concat(newString);
+  }
+  return output;
+}
+
+/**
+ * power mod function efficiently mods sub tasks
+ * so sub task values do not balloon out of control
+ * @param {number} key
+ * @param {number} n
+ * @param {number} val
+ * @returns {number} answer
+ */
+function powerMod(key, n, val) {
+  let output = 1;
+  let expon = key;
+  let value = val;
+  while (expon > 0) {
+    let temp = Math.floor(expon / 2);
+    let rem = key - 2 * temp;
+    if (rem === 1) {
+      output = (output * value) % n;
+    }
+    value = (value * value) % n;
+    expon = temp;
   }
   return output;
 }
