@@ -88,6 +88,7 @@ export function generatePublic(p, q) {
   return e;
 }
 
+
 /**
  * Generates private key: d
  * d = (1 + x * phi(n))/e for some integer x
