@@ -52,14 +52,16 @@ export default class EncryptionSection extends React.Component {
         </Container>
         <Container title="Ciphertext">
           <table>
-            <tr>
-              <th>
-                <p>ciphertext:</p>
-              </th>
-              <td>
-                <p>{this.state.ciphertext}</p>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>
+                  <p>ciphertext:</p>
+                </th>
+                <td>
+                  <p>{this.state.ciphertext}</p>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Container>
       </Section>
