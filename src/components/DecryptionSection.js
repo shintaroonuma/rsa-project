@@ -6,6 +6,10 @@ import Emoji from "./Emoji";
 
 /**
  * Section for the user to decrypt a message.
+ *
+ * @param {object} props this component needs `n` and `privateKey` in order to
+ * decrypt the message. `ciphertext` should also be given to use the ciphertext
+ * from the previous section.
  */
 export default class DecryptionSection extends React.Component {
   constructor(props) {
@@ -25,7 +29,7 @@ export default class DecryptionSection extends React.Component {
     const currentTextbox = this.textboxRef.current;
     const input = currentTextbox.state.value;
 
-    // TODO: Replace dummy
+    // TODO: Use props to call function in RSA module
     const plaintext = input;
     this.setState({ plaintext: plaintext });
   }
@@ -35,10 +39,11 @@ export default class DecryptionSection extends React.Component {
       <Section title="3. Decryption">
         <Container title="Decrypt some text">
           <TextBox
+            ref={this.textboxRef}
             type="text"
             placeholder="Ciphertext"
+            defaultVal={this.props.ciphertext}
             getError={() => ""} // TODO: validation of length, chars, etc...
-            ref={this.textboxRef}
           />
           <button onClick={this.onDecrypt}>
             Decrypt <Emoji label="unlock" symbol="🔓" />

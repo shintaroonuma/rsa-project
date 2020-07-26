@@ -16,15 +16,15 @@ import {
 /**
  * Section containing inputs, a button, and texts for generating keys.
  *
- * Two textboxes are used for prime number inputs. The generate button is
- * pressed and the resulting values are then displayed: the public key, private
- * key and the product of the primes N.
- *
- * Its state stores the generated values of:
+ * The user enters two prime numbers and the following values are generated:
  *  - public key
  *  - private key
  *  - N
- * if they exist
+ * These are displayed to the user when the "Generate" button is pressed, and
+ * stored in this component's state.
+ *
+ * @param {object} props includes a callback function `onKeysUpdated` to be
+ * invoked whenever the above values are (re)calculated
  */
 export default class KeyGenSection extends React.Component {
   constructor(props) {
@@ -98,7 +98,8 @@ export default class KeyGenSection extends React.Component {
 
   /**
    * Calculates N, public key, and the private key using the two given primes.
-   * The state of this component is updated with the new values.
+   * The state of this component and the callback to the parent function are
+   * updated with the new values.
    * @param {number} p the first prime number
    * @param {number} q the second prime number
    */
@@ -107,6 +108,7 @@ export default class KeyGenSection extends React.Component {
     const e = generatePublic(p, q);
     const d = generatePrivate(p, q);
     this.setState({ n: n, publicKey: e, privateKey: d });
+    this.props.onKeysUpdated(n, e, d);
   }
 
   render() {
