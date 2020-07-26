@@ -51,14 +51,16 @@ export default class DecryptionSection extends React.Component {
         </Container>
         <Container title="Decrypted message">
           <table>
-            <tr>
-              <th>
-                <p>plaintext:</p>
-              </th>
-              <td>
-                <p>{this.state.plaintext}</p>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>
+                  <p>plaintext:</p>
+                </th>
+                <td>
+                  <p>{this.state.plaintext}</p>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Container>
       </Section>

@@ -133,30 +133,32 @@ export default class KeyGenSection extends React.Component {
         </Container>
         <Container title="Generated values">
           <table>
-            <tr>
-              <th>
-                <p>N:</p>
-              </th>
-              <td>
-                <p>{this.state.n}</p>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Public key:</p>
-              </th>
-              <td>
-                <p>{this.state.publicKey}</p>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <p>Private key:</p>
-              </th>
-              <td>
-                <p>{this.state.privateKey}</p>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>
+                  <p>N:</p>
+                </th>
+                <td>
+                  <p>{this.state.n}</p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>Public key:</p>
+                </th>
+                <td>
+                  <p>{this.state.publicKey}</p>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>Private key:</p>
+                </th>
+                <td>
+                  <p>{this.state.privateKey}</p>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </Container>
       </Section>
