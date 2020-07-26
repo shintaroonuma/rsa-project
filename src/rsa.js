@@ -97,9 +97,8 @@ export function generatePublic(p, q) {
  * @returns {number} private key
  */
 export function generatePrivate(p, q, e) {
-  let phi = (p - 1) * (q - 1);
   let a = e;
-  let b = phi;
+  let b = (p - 1) * (q - 1);
   a %= b;
   for (let i = 1; i < b; i++) {
     if ((a * i) % b === 1) {
