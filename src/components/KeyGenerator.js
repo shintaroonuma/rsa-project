@@ -11,6 +11,7 @@ import {
   generatePublic,
   generatePrivate
 } from "../rsa";
+import Container from "./Container";
 
 /**
  * Section containing inputs, a button, and texts for generating keys.
@@ -112,8 +113,7 @@ export default class KeyGenerator extends React.Component {
     return (
       <Section title="1. Generate keys">
         <div className={styles.container}>
-          <div className={styles.form}>
-            <p className={styles.desc}>Choose two prime numbers</p>
+          <Container title="Choose two prime numbers">
             <TextBox
               type="number"
               placeholder="First prime"
@@ -126,39 +126,38 @@ export default class KeyGenerator extends React.Component {
               getError={this.getErrorMsg}
               ref={this.textbox2Ref}
             />
-            <button onClick={this.onGenerate} className={styles.button}>
+            <button onClick={this.onGenerate}>
               Generate
             </button>
-          </div>
-          <div>
-            <p className={styles.desc}>Generated values</p>
-            <table className={styles.table}>
+          </Container>
+          <Container title="Generated values">
+            <table>
               <tr>
                 <th>
-                  <p className={styles.variable}>N:</p>
+                  <p>N:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.n}</p>
+                  <p>{this.state.n}</p>
                 </td>
               </tr>
               <tr>
                 <th>
-                  <p className={styles.variable}>Public key:</p>
+                  <p>Public key:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.publicKey}</p>
+                  <p>{this.state.publicKey}</p>
                 </td>
               </tr>
               <tr>
                 <th>
-                  <p className={styles.variable}>Private key:</p>
+                  <p>Private key:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.privateKey}</p>
+                  <p>{this.state.privateKey}</p>
                 </td>
               </tr>
             </table>
-          </div>
+          </Container>
         </div>
       </Section>
     );
