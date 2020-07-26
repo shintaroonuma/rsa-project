@@ -123,19 +123,34 @@ export function generatePrivate(p, q) {
  * @param {number} e public key
  * @param {number} n modulus for public key
  * @param {string} text
- * @returns {string} ciphertext
+ * @returns {array} ciphertext
  */
 function encrypt(e, n, text) {
-  return "encrypted text";
+  let len = text.length;
+  let output = Array();
+  for (let i = 0; i < len; i++) {
+    let value = text.charCodeAt(i);
+    let newVal = Math.pow(value, e) % n;
+    output.push(newVal);
+  }
+  return output;
 }
 
 /**
  * decrypts ciphertext by raising value to the dth power modulo n
  * @param {number} d private key
  * @param {number} n modulus for private key
- * @param {string} text
+ * @param {array} text
  * @returns {string}
  */
 function decrypt(d, n, text) {
-  return "decrypted text";
+  let len = text.length;
+  let output = "";
+  for (let i = 0; i < len; i++) {
+    let value = text[i];
+    let newVal = Math.pow(value, d) % n;
+    let newString = String.fromCharCode(newVal);
+    output.concat(newString);
+  }
+  return output;
 }
