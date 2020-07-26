@@ -96,11 +96,11 @@ export function generatePublic(p, q) {
  * d = (1 + x * phi(n))/e for some integer x
  * @param {number} p prime number
  * @param {number} q prime number != p
+ * @param {number} e public key
  * @returns {number} private key
  */
-export function generatePrivate(p, q) {
+export function generatePrivate(p, q, e) {
   console.log("private open");
-  let e = generatePublic(p, q);
   let phi = (p - 1) * (q - 1);
   let u1 = 1;
   let u2 = 0;

@@ -106,7 +106,7 @@ export default class KeyGenSection extends React.Component {
   calculateValues(p, q) {
     const n = generateN(p, q);
     const e = generatePublic(p, q);
-    const d = generatePrivate(p, q);
+    const d = generatePrivate(p, q, e);
     this.setState({ n: n, publicKey: e, privateKey: d });
     this.props.onKeysUpdated(n, e, d);
   }
