@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./KeyGenerator.module.sass";
+import Container from "./Container";
+import Emoji from "./Emoji";
 import Section from "./Section";
 import TextBox from "./TextBox";
 import {
@@ -11,7 +13,6 @@ import {
   generatePublic,
   generatePrivate
 } from "../rsa";
-import Container from "./Container";
 
 /**
  * Section containing inputs, a button, and texts for generating keys.
@@ -127,7 +128,7 @@ export default class KeyGenerator extends React.Component {
               ref={this.textbox2Ref}
             />
             <button onClick={this.onGenerate}>
-              Generate
+              Generate <Emoji label="key" symbol="🔑" />
             </button>
           </Container>
           <Container title="Generated values">
