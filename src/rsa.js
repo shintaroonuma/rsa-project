@@ -121,8 +121,8 @@ export function encrypt(e, n, text) {
     let value = text.charCodeAt(i);
     let newVal = Math.pow(value, e) % n;
     let newString = newVal.toString();
-    output.concat(newString);
-    output.concat(" ");
+    output = output.concat(newString);
+    output = output.concat(" ");
   }
   return output;
 }
@@ -139,10 +139,11 @@ export function decrypt(d, n, ciphertext) {
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {
+    output = text;
     let value = text[i];
     let newVal = Math.pow(value, d) % n;
     let newString = String.fromCharCode(newVal);
-    output.concat(newString);
+    output = output.concat(newString);
   }
   return output;
 }
