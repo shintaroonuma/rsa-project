@@ -3,6 +3,7 @@ import Section from "./Section";
 import Container from "./Container";
 import TextBox from "./TextBox";
 import Emoji from "./Emoji";
+import { encrypt } from "../rsa";
 
 /**
  * Section for the user to encrypt a message.
@@ -29,8 +30,8 @@ export default class EncryptionSection extends React.Component {
     const currentTextbox = this.textboxRef.current;
     const input = currentTextbox.state.value;
 
-    // TODO: Replace dummy
-    const newCipher = input;
+    const newCipher = encrypt(this.props.publicKey, this.props.n, input);
+
     this.setState({ ciphertext: newCipher });
     this.props.onCiphertextUpdated(newCipher);
   }
