@@ -102,31 +102,14 @@ export function generatePublic(p, q) {
 export function generatePrivate(p, q, e) {
   console.log("private open");
   let phi = (p - 1) * (q - 1);
-  let u1 = 1;
-  let u2 = 0;
-  let u3 = phi;
-  let v1 = 0;
-  let v2 = 1;
-  let v3 = e;
-
-  while (v3 !== 0) {
-    let q = Math.floor(u1 / v3);
-    let t1 = u1 - q * v1;
-    let t2 = u2 - q * v2;
-    let t3 = u3 - q * v3;
-    u1 = v1;
-    u2 = v2;
-    u3 = v3;
-    v1 = t1;
-    v2 = t2;
-    v3 = t3;
+  let a = e;
+  let b = phi;
+  a %= b;
+  for (let i = 1; i < b; i++) {
+    if ((a * i) % b === 1) {
+      return i;
+    }
   }
-  let output = u2;
-  if (output < 0) {
-    output = output + phi;
-  }
-  console.log("private generated");
-  return output;
 }
 
 /**
