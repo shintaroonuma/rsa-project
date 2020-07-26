@@ -98,40 +98,48 @@ export function generatePublic(p, q) {
 export function generatePrivate(p, q) {
   let e = generatePublic(p, q);
   let phi = (p - 1) * (q - 1);
-  let x = 1;
-  let d = (1 + x * phi) / e;
-  let isValid = false;
-  if (!Number.isInteger(d)) {
-    if (gcd(d, phi) === 1) {
-      isValid = true;
-    }
+  let u1 = 1;
+  let u2 = 0;
+  let u3 = phi;
+  let v1 = 0;
+  let v2 = 1;
+  let v3 = e;
+
+  while (v3 !== 0) {
+    let q = Math.floor(u1 / v3);
+    let t1 = u1 - q * v1;
+    let t2 = u2 - q * v2;
+    let t3 = u3 - q * v3;
+    u1 = v1;
+    u2 = v2;
+    u3 = v3;
+    v1 = t1;
+    v2 = t2;
+    v3 = t3;
   }
-  while (!isValid) {
-    x = x + 1;
-    d = (1 + x * phi) / e;
-    if (!Number.isInteger(d)) {
-      if (gcd(d, phi) === 1) {
-        isValid = true;
-      }
-    }
+  let output = u2;
+  if (output < 0) {
+    output = output + phi;
   }
-  return d;
+  return output;
 }
 
 /**
  * encrypts text by raising each block to the eth power modulo n
  * @param {number} e public key
  * @param {number} n modulus for public key
- * @param {string} text
- * @returns {array} ciphertext
+ * @param {string} message
+ * @returns {string} ciphertext
  */
-function encrypt(e, n, text) {
+function encrypt(e, n, message) {
   let len = text.length;
-  let output = Array();
+  let output = "";
   for (let i = 0; i < len; i++) {
     let value = text.charCodeAt(i);
     let newVal = Math.pow(value, e) % n;
-    output.push(newVal);
+    let newString = newVal.toString();
+    output.concat(newString);
+    output.concat(" ");
   }
   return output;
 }
@@ -140,10 +148,11 @@ function encrypt(e, n, text) {
  * decrypts ciphertext by raising value to the dth power modulo n
  * @param {number} d private key
  * @param {number} n modulus for private key
- * @param {array} text
- * @returns {string}
+ * @param {string} ciphertext
+ * @returns {string} message
  */
-function decrypt(d, n, text) {
+function decrypt(d, n, ciphertext) {
+  let text = cipher.split(" ");
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {
