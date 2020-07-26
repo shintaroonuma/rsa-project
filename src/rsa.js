@@ -88,7 +88,6 @@ export function generatePublic(p, q) {
   return e;
 }
 
-
 /**
  * Generates private key: d
  * d = (1 + x * phi(n))/e for some integer x
@@ -129,10 +128,10 @@ export function generatePrivate(p, q) {
  * Encrypts text by raising each block to the eth power modulo n
  * @param {number} e public key
  * @param {number} n modulus for public key
- * @param {string} message
+ * @param {string} text
  * @returns {string} ciphertext
  */
-export function encrypt(e, n, message) {
+export function encrypt(e, n, text) {
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {
@@ -150,10 +149,10 @@ export function encrypt(e, n, message) {
  * @param {number} d private key
  * @param {number} n modulus for private key
  * @param {string} ciphertext
- * @returns {string} message
+ * @returns {string} text
  */
 export function decrypt(d, n, ciphertext) {
-  let text = cipher.split(" ");
+  let text = ciphertext.split(" ");
   let len = text.length;
   let output = "";
   for (let i = 0; i < len; i++) {
