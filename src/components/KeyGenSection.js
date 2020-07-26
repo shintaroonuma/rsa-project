@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./KeyGenerator.module.sass";
+import styles from "./KeyGenSection.module.sass";
 import Container from "./Container";
 import Emoji from "./Emoji";
 import Section from "./Section";
@@ -27,7 +27,7 @@ import {
  *  - N
  * if they exist
  */
-export default class KeyGenerator extends React.Component {
+export default class KeyGenSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = { n: null, publicKey: null, privateKey: null };

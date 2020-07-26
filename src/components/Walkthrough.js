@@ -1,5 +1,5 @@
 import React from "react";
-import KeyGenerator from "./KeyGenerator";
+import KeyGenSection from "./KeyGenSection";
 import EncryptionSection from "./EncryptionSection";
 import DecryptionSection from "./DecryptionSection";
 
@@ -14,7 +14,7 @@ export default class Walkthrough extends React.Component {
   render() {
     return (
       <div>
-        <KeyGenerator />
+        <KeyGenSection />
         <EncryptionSection />
         <DecryptionSection />
       </div>
