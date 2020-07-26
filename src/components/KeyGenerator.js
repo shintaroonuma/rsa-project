@@ -131,29 +131,29 @@ export default class KeyGenerator extends React.Component {
             </button>
           </Container>
           <Container title="Generated values">
-            <table className={styles.table}>
+            <table>
               <tr>
                 <th>
-                  <p className={styles.variable}>N:</p>
+                  <p>N:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.n}</p>
+                  <p>{this.state.n}</p>
                 </td>
               </tr>
               <tr>
                 <th>
-                  <p className={styles.variable}>Public key:</p>
+                  <p>Public key:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.publicKey}</p>
+                  <p>{this.state.publicKey}</p>
                 </td>
               </tr>
               <tr>
                 <th>
-                  <p className={styles.variable}>Private key:</p>
+                  <p>Private key:</p>
                 </th>
                 <td>
-                  <p className={styles.value}>{this.state.privateKey}</p>
+                  <p>{this.state.privateKey}</p>
                 </td>
               </tr>
             </table>
