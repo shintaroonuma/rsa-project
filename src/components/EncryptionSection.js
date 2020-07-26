@@ -4,6 +4,7 @@ import Container from "./Container";
 import TextBox from "./TextBox";
 import Emoji from "./Emoji";
 import { encrypt } from "../rsa";
+import { isAscii } from "../util";
 
 /**
  * Section for the user to encrypt a message.
@@ -17,8 +18,28 @@ export default class EncryptionSection extends React.Component {
     super(props);
     this.state = { ciphertext: null };
 
+    this.getErrorMsg = this.getErrorMsg.bind(this);
+
     this.textboxRef = React.createRef();
     this.onEncrypt = this.onEncrypt.bind(this);
+  }
+
+  /**
+   * Returns an error message string from validating the value, or an empty
+   * string if the value is valid.
+   * @param {string} str input string
+   * @returns {string}
+   */
+  getErrorMsg(str) {
+    if (str === "") {
+      return "Enter a message to encrypt.";
+    }
+
+    if (isAscii(str)) {
+      return "";
+    } else {
+      return "Only ASCII characters are permitted.";
+    }
   }
 
   /**
@@ -43,7 +64,7 @@ export default class EncryptionSection extends React.Component {
           <TextBox
             type="text"
             placeholder="Secret message..."
-            getError={() => ""} // TODO: validation of length, chars, etc...
+            getError={this.getErrorMsg}
             ref={this.textboxRef}
           />
           <button onClick={this.onEncrypt}>
