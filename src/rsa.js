@@ -64,7 +64,6 @@ export function checkPrime(a) {
  * @returns {number}
  */
 export function generateN(p, q) {
-  console.log("n generated");
   return p * q;
 }
 
@@ -76,7 +75,6 @@ export function generateN(p, q) {
  * @returns {number} public key
  */
 export function generatePublic(p, q) {
-  console.log("public open");
   let phi = (p - 1) * (q - 1);
   let e = 2;
   let isValid = false; // true if e is valid
@@ -87,7 +85,6 @@ export function generatePublic(p, q) {
       isValid = true;
     }
   }
-  console.log("public generated");
   return e;
 }
 
@@ -100,7 +97,6 @@ export function generatePublic(p, q) {
  * @returns {number} private key
  */
 export function generatePrivate(p, q, e) {
-  console.log("private open");
   let phi = (p - 1) * (q - 1);
   let a = e;
   let b = phi;
