@@ -17,7 +17,7 @@ function gcd(a, b) {
 }
 
 /** Upper bound for a prime number input. */
-export const UPPER_BOUND = Number.MAX_SAFE_INTEGER;
+export const UPPER_BOUND = 1000000;
 
 /** Lower bound for a prime number input. */
 export const LOWER_BOUND = 1;
@@ -44,23 +44,17 @@ export function checkBound(a) {
  * @returns {boolean} is number prime
  */
 export function checkPrime(a) {
+  let isValid = true;
   if (a === 1) {
     return false;
-  }
-  if (a === 2) {
-    return true;
-  }
-  for (let i = 0; i < 5; i++) {
-    let rando = 2 + Math.floor(Math.random() * (a - 4));
-    if (gcd(rando, a) !== 1) {
-      return false;
+  } else {
+    for (let i = 2; i * i <= a; i++) {
+      if (a % i === 0) {
+        isValid = false;
+      }
     }
-    let power = Math.pow(rando, a - 1);
-    if (power % a !== 1) {
-      return false;
-    }
+    return isValid;
   }
-  return true;
 }
 
 /**
