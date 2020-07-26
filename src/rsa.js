@@ -97,28 +97,45 @@ export function generatePublic(p, q) {
  */
 export function generatePrivate(p, q) {
   let e = generatePublic(p, q);
-  // TODO: Replace dummy value
-  return 12;
+  let phi = (p - 1) * (q - 1);
+  let x = 1;
+  let d = (1 + x * phi) / e;
+  let isValid = false;
+  if (!Number.isInteger(d)) {
+    if (gcd(d, phi) === 1) {
+      isValid = true;
+    }
+  }
+  while (!isValid) {
+    x = x + 1;
+    d = (1 + x * phi) / e;
+    if (!Number.isInteger(d)) {
+      if (gcd(d, phi) === 1) {
+        isValid = true;
+      }
+    }
+  }
+  return d;
 }
 
 /**
  * encrypts text by raising each block to the eth power modulo n
- * @param {number} a
- * @param {number} b
+ * @param {number} e public key
+ * @param {number} n modulus for public key
  * @param {string} text
  * @returns {string} ciphertext
  */
-function encrypt(a, b, text) {
+function encrypt(e, n, text) {
   return "encrypted text";
 }
 
 /**
  * decrypts ciphertext by raising value to the dth power modulo n
- * @param {number} a
- * @param {number} b
+ * @param {number} d private key
+ * @param {number} n modulus for private key
  * @param {string} text
  * @returns {string}
  */
-function decrypt(a, b, text) {
+function decrypt(d, n, text) {
   return "decrypted text";
 }
