@@ -18,7 +18,7 @@ export default function Section({ title, children }) {
     <section className={styles.section}>
       <Layout>
         <h2 className={styles.title}>{title}</h2>
-        <div>{children}</div>
+        <div className={styles.container}>{children}</div>
       </Layout>
     </section>
   );

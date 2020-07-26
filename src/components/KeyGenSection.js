@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./KeyGenerator.module.sass";
 import Container from "./Container";
 import Emoji from "./Emoji";
 import Section from "./Section";
@@ -17,17 +16,17 @@ import {
 /**
  * Section containing inputs, a button, and texts for generating keys.
  *
- * Two textboxes are used for prime number inputs. The generate button is
- * pressed and the resulting values are then displayed: the public key, private
- * key and the product of the primes N.
- *
- * Its state stores the generated values of:
+ * The user enters two prime numbers and the following values are generated:
  *  - public key
  *  - private key
  *  - N
- * if they exist
+ * These are displayed to the user when the "Generate" button is pressed, and
+ * stored in this component's state.
+ *
+ * @param {object} props includes a callback function `onKeysUpdated` to be
+ * invoked whenever the above values are (re)calculated
  */
-export default class KeyGenerator extends React.Component {
+export default class KeyGenSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = { n: null, publicKey: null, privateKey: null };
@@ -99,7 +98,8 @@ export default class KeyGenerator extends React.Component {
 
   /**
    * Calculates N, public key, and the private key using the two given primes.
-   * The state of this component is updated with the new values.
+   * The state of this component and the callback to the parent function are
+   * updated with the new values.
    * @param {number} p the first prime number
    * @param {number} q the second prime number
    */
@@ -108,58 +108,57 @@ export default class KeyGenerator extends React.Component {
     const e = generatePublic(p, q);
     const d = generatePrivate(p, q);
     this.setState({ n: n, publicKey: e, privateKey: d });
+    this.props.onKeysUpdated(n, e, d);
   }
 
   render() {
     return (
       <Section title="1. Generate keys">
-        <div className={styles.container}>
-          <Container title="Choose two prime numbers">
-            <TextBox
-              type="number"
-              placeholder="First prime"
-              getError={this.getErrorMsg}
-              ref={this.textbox1Ref}
-            />
-            <TextBox
-              type="number"
-              placeholder="Second prime"
-              getError={this.getErrorMsg}
-              ref={this.textbox2Ref}
-            />
-            <button onClick={this.onGenerate}>
-              Generate <Emoji label="key" symbol="🔑" />
-            </button>
-          </Container>
-          <Container title="Generated values">
-            <table>
-              <tr>
-                <th>
-                  <p>N:</p>
-                </th>
-                <td>
-                  <p>{this.state.n}</p>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <p>Public key:</p>
-                </th>
-                <td>
-                  <p>{this.state.publicKey}</p>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <p>Private key:</p>
-                </th>
-                <td>
-                  <p>{this.state.privateKey}</p>
-                </td>
-              </tr>
-            </table>
-          </Container>
-        </div>
+        <Container title="Choose two prime numbers">
+          <TextBox
+            type="number"
+            placeholder="First prime"
+            getError={this.getErrorMsg}
+            ref={this.textbox1Ref}
+          />
+          <TextBox
+            type="number"
+            placeholder="Second prime"
+            getError={this.getErrorMsg}
+            ref={this.textbox2Ref}
+          />
+          <button onClick={this.onGenerate}>
+            Generate <Emoji label="key" symbol="🔑" />
+          </button>
+        </Container>
+        <Container title="Generated values">
+          <table>
+            <tr>
+              <th>
+                <p>N:</p>
+              </th>
+              <td>
+                <p>{this.state.n}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Public key:</p>
+              </th>
+              <td>
+                <p>{this.state.publicKey}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Private key:</p>
+              </th>
+              <td>
+                <p>{this.state.privateKey}</p>
+              </td>
+            </tr>
+          </table>
+        </Container>
       </Section>
     );
   }
