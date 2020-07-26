@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./KeyGenSection.module.sass";
 import Container from "./Container";
 import Emoji from "./Emoji";
 import Section from "./Section";
@@ -113,53 +112,51 @@ export default class KeyGenSection extends React.Component {
   render() {
     return (
       <Section title="1. Generate keys">
-        <div className={styles.container}>
-          <Container title="Choose two prime numbers">
-            <TextBox
-              type="number"
-              placeholder="First prime"
-              getError={this.getErrorMsg}
-              ref={this.textbox1Ref}
-            />
-            <TextBox
-              type="number"
-              placeholder="Second prime"
-              getError={this.getErrorMsg}
-              ref={this.textbox2Ref}
-            />
-            <button onClick={this.onGenerate}>
-              Generate <Emoji label="key" symbol="🔑" />
-            </button>
-          </Container>
-          <Container title="Generated values">
-            <table>
-              <tr>
-                <th>
-                  <p>N:</p>
-                </th>
-                <td>
-                  <p>{this.state.n}</p>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <p>Public key:</p>
-                </th>
-                <td>
-                  <p>{this.state.publicKey}</p>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <p>Private key:</p>
-                </th>
-                <td>
-                  <p>{this.state.privateKey}</p>
-                </td>
-              </tr>
-            </table>
-          </Container>
-        </div>
+        <Container title="Choose two prime numbers">
+          <TextBox
+            type="number"
+            placeholder="First prime"
+            getError={this.getErrorMsg}
+            ref={this.textbox1Ref}
+          />
+          <TextBox
+            type="number"
+            placeholder="Second prime"
+            getError={this.getErrorMsg}
+            ref={this.textbox2Ref}
+          />
+          <button onClick={this.onGenerate}>
+            Generate <Emoji label="key" symbol="🔑" />
+          </button>
+        </Container>
+        <Container title="Generated values">
+          <table>
+            <tr>
+              <th>
+                <p>N:</p>
+              </th>
+              <td>
+                <p>{this.state.n}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Public key:</p>
+              </th>
+              <td>
+                <p>{this.state.publicKey}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <p>Private key:</p>
+              </th>
+              <td>
+                <p>{this.state.privateKey}</p>
+              </td>
+            </tr>
+          </table>
+        </Container>
       </Section>
     );
   }

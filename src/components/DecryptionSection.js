@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./DecryptionSection.module.sass";
 import Section from "./Section";
 import Container from "./Container";
 import TextBox from "./TextBox";
@@ -34,31 +33,29 @@ export default class DecryptionSection extends React.Component {
   render() {
     return (
       <Section title="3. Decryption">
-        <div className={styles.container}>
-          <Container title="Decrypt some text">
-            <TextBox
-              type="text"
-              placeholder="Ciphertext"
-              getError={() => ""} // TODO: validation of length, chars, etc...
-              ref={this.textboxRef}
-            />
-            <button onClick={this.onDecrypt}>
-              Decrypt <Emoji label="unlock" symbol="🔓" />
-            </button>
-          </Container>
-          <Container title="Decrypted message">
-            <table>
-              <tr>
-                <th>
-                  <p>plaintext:</p>
-                </th>
-                <td>
-                  <p>{this.state.plaintext}</p>
-                </td>
-              </tr>
-            </table>
-          </Container>
-        </div>
+        <Container title="Decrypt some text">
+          <TextBox
+            type="text"
+            placeholder="Ciphertext"
+            getError={() => ""} // TODO: validation of length, chars, etc...
+            ref={this.textboxRef}
+          />
+          <button onClick={this.onDecrypt}>
+            Decrypt <Emoji label="unlock" symbol="🔓" />
+          </button>
+        </Container>
+        <Container title="Decrypted message">
+          <table>
+            <tr>
+              <th>
+                <p>plaintext:</p>
+              </th>
+              <td>
+                <p>{this.state.plaintext}</p>
+              </td>
+            </tr>
+          </table>
+        </Container>
       </Section>
     );
   }
