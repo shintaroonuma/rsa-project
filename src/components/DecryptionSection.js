@@ -4,6 +4,7 @@ import Container from "./Container";
 import TextBox from "./TextBox";
 import Emoji from "./Emoji";
 import { decrypt } from "../rsa";
+import { isNumberOrSpace } from "../util";
 
 /**
  * Section for the user to decrypt a message.
@@ -19,6 +20,8 @@ export default class DecryptionSection extends React.Component {
 
     this.textboxRef = React.createRef();
     this.onDecrypt = this.onDecrypt.bind(this);
+
+    this.validateDecryption = this.validateDecryption.bind(this);
   }
 
   /**
@@ -34,6 +37,20 @@ export default class DecryptionSection extends React.Component {
     this.setState({ plaintext: plaintext });
   }
 
+  /**
+   * Returns an error message if the decryption input is an invalid format.
+   * A valid input contains only numbers and spaces.
+   * @param {string} input text to be decrypted
+   * @returns {boolean}
+   */
+  validateDecryption(input) {
+    if (isNumberOrSpace(input)) {
+      return "";
+    } else {
+      return "Only enter numbers and spaces.";
+    }
+  }
+
   render() {
     return (
       <Section title="3. Decryption">
@@ -43,7 +60,7 @@ export default class DecryptionSection extends React.Component {
             type="text"
             placeholder="Ciphertext"
             defaultVal={this.props.ciphertext}
-            getError={() => ""} // TODO: validation of length, chars, etc...
+            getError={this.validateDecryption}
           />
           <button onClick={this.onDecrypt}>
             Decrypt <Emoji label="unlock" symbol="🔓" />
